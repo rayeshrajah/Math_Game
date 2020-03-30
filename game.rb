@@ -14,14 +14,15 @@ class Game
     @player1 = Player.new(@name1)
     @player2 = Player.new(@name2)
     @players = [@player1, @player2].shuffle
+    play_game
   end
   
   #boolean to check the game condition
   def play_game
-    @game = true 
-    while @game
+    @game_play = true 
+    while @game_play
       if players_turn
-        @game = false
+        @game_play = false
       end
     end
     puts "---- Game Over ----"
@@ -34,24 +35,29 @@ class Game
       @turn = 1
     else
       @turn = 0
-    end 
+    end
+  end 
+
+  def display_turn
+    puts "\n"
+    puts "----- NEW TURN -----\n"
   end
 
   def players_turn
-    puts "----- Question -----"
+    puts "\n"
     @questions = Question.new
-    puts "#{@players[@turn]}: #{question.question}"
+    puts "#{@players[@turn]}: #{@questions.question}"
     @answer = gets.chomp
-    @ans = question.check_ans(@answer)
+    @ans = @questions.check_ans(@answer)
     #checks answer is right
     if(@ans)
       puts "#{@players[@turn]}: YES! You are correct!"
-      next_turn
+      display_turn
     else
       puts "#{@players[@turn]}: Seriously? No!"
       @players[@turn].take_life
-        puts @player1.to_s "vs" @player2.to_s
-      next_turn
+        puts "#{@player1.to_s} vs #{@player2.to_s}"
+      display_turn
     end
     #If player lives has reached 0  then display score message
     if @players[@turn].lives === 0
@@ -64,3 +70,5 @@ class Game
     return false
   end
 end
+
+game = Game.new
