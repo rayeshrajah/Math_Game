@@ -4,8 +4,14 @@ class Player
     @name = name
     @lives = 3
   end
+  
   def to_s 
-    "#{@name}: #{lives}/3"
+    "#{@name}: #{@lives}/3"
   end
+  
+  def take_life
+    @lives -= 1
+  end
+
 end
 
