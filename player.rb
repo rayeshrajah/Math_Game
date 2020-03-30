@@ -12,6 +12,6 @@ class Player
   def take_life
     @lives -= 1
   end
-
+  
 end
 
