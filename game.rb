@@ -38,6 +38,7 @@ class Game
     end
   end 
 
+#Displays new turn when player switches turn
   def display_turn
     puts "\n"
     puts "----- NEW TURN -----\n"
